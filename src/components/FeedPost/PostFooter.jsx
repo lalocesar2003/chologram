@@ -26,7 +26,7 @@ const PostFooter = () => {
   };
 
   return (
-    <>
+    <Box mb={10}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={"auto"}>
         <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
           {liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -44,6 +44,9 @@ const PostFooter = () => {
         <Text as="span" fontWeight={400}>
           Feeling good
         </Text>
+      </Text>
+      <Text fontSize="sm" color="gray">
+        view all 1000 comments
       </Text>
       <InputGroup>
         <Input
@@ -64,7 +67,7 @@ const PostFooter = () => {
           </Button>
         </InputRightElement>
       </InputGroup>
-    </>
+    </Box>
   );
 };
 
