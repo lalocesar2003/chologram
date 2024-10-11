@@ -11,7 +11,7 @@ import { useState } from "react";
 import { NotificationsLogo, UnlikeLogo } from "../../assets/constants";
 import { CommentLogo } from "../../assets/constants";
 
-const PostFooter = () => {
+const PostFooter = ({ username, isProfilePage }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -26,7 +26,7 @@ const PostFooter = () => {
   };
 
   return (
-    <Box mb={10}>
+    <Box mb={10} marginTop={"auto"}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={"auto"}>
         <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
           {liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -39,15 +39,20 @@ const PostFooter = () => {
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
       </Text>
-      <Text fontSize="sm" fontWeight={700}>
-        asapprogrammer{" "}
-        <Text as="span" fontWeight={400}>
-          Feeling good
-        </Text>
-      </Text>
-      <Text fontSize="sm" color="gray">
-        view all 1000 comments
-      </Text>
+      {!isProfilePage && (
+        <>
+          <Text fontSize="sm" fontWeight={700}>
+            {username}{" "}
+            <Text as="span" fontWeight={400}>
+              Feeling good
+            </Text>
+          </Text>
+          <Text fontSize="sm" color="gray">
+            View all 1,000 comments
+          </Text>
+        </>
+      )}
+
       <InputGroup>
         <Input
           variant={"flushed"}

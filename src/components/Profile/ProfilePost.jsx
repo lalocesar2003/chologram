@@ -7,16 +7,18 @@ import {
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   Avatar,
   Box,
   ModalCloseButton,
   ModalBody,
+  Divider,
+  VStack,
 } from "@chakra-ui/react";
 import { AiFillHeart } from "react-icons/ai";
 import { FaComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-
+import Comment from "../Comment/Comment";
+import PostFooter from "../FeedPost/PostFooter";
 const ProfilePost = ({ img }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
@@ -76,7 +78,6 @@ const ProfilePost = ({ img }) => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody bg={"black"} pb={5}>
             <Flex
@@ -101,22 +102,51 @@ const ProfilePost = ({ img }) => {
                 display={{ base: "none", md: "flex" }}
               >
                 <Flex alignItems={"center"} justifyContent="space-between">
-                  <Avatar
-                    src="/profilepic.png"
-                    size={"sm"}
-                    name="As a Programmer"
-                  />
-                  <Text fontWeight={"bold"} fontSize={12}>
-                    asapprogrammer_
-                  </Text>
+                  <Flex alignItems={"center"} gap={4}>
+                    <Avatar
+                      src="/profilepic.png"
+                      size={"sm"}
+                      name="As a Programmer"
+                    />
+                    <Text fontWeight={"bold"} fontSize={12}>
+                      lalocesar2003
+                    </Text>
+                  </Flex>
+                  <Box
+                    _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
+                    borderRadius={4}
+                    p={1}
+                  >
+                    <MdDelete size={20} cursor="pointer" />
+                  </Box>
                 </Flex>
-                <Box
-                  _hover={{ bg: "whiteAlpha.300", color: "red.600" }}
-                  borderRadius={4}
-                  p={1}
-                >
-                  <MdDelete size={20} cursor="pointer" />
-                </Box>
+                <Divider my={4} bg="gray.500" />
+
+                <VStack w="full" alignItems={"start"} maxH="350px">
+                  <Comment
+                    createdAt="1d ago"
+                    username="asapprogrammer_"
+                    profilePic="/profilepic.png"
+                    text="Dummy images from unsplash"
+                  />
+
+                  <Comment
+                    createdAt="12h ago"
+                    username="abramov"
+                    profilePic="https://bit.ly/dan-abramov"
+                    text="Nice pic"
+                  />
+
+                  <Comment
+                    createdAt="3h ago"
+                    username="kentcdodds"
+                    profilePic="https://bit.ly/kent-c-dodds"
+                    text="Good clone dude!"
+                  />
+                </VStack>
+                <Divider my={4} bg={"gray.8000"} />
+
+                <PostFooter isProfilePage={true} />
               </Flex>
             </Flex>
           </ModalBody>
