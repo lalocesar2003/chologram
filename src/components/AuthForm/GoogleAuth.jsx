@@ -18,12 +18,19 @@ const GoogleAuth = ({ prefix }) => {
         showToast("Error", error.message, "error");
         return;
       }
+      const userRef = doc(firestore, "users", newUser.user.uid);
+      const userSnap = await getDoc(userRef);
 
-      if (newUser) {
+      if (userSnap.exists()) {
+        // login
+        const userDoc = userSnap.data();
+        localStorage.setItem("user-info", JSON.stringify(userDoc));
+        loginUser(userDoc);
+      } else {
         const userDoc = {
           uid: newUser.user.uid,
           email: newUser.user.email,
-          username: newUser.user.email.split("@")[0], // johndoe
+          username: newUser.user.email.split("@")[0],
           fullName: newUser.user.displayName,
           bio: "",
           profilePicURL: newUser.user.photoURL,
