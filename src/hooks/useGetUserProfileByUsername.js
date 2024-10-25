@@ -29,6 +29,8 @@ const useGetUserProfileByUsername = (username) => {
         if (querySnapshot.empty) return setUserProfile(null);
       } catch (error) {
         showToast("Error", error.message, "error");
+      } finally {
+        setIsLoading(false);
       }
     };
     getUserProfile();
