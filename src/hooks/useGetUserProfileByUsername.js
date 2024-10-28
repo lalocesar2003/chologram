@@ -25,6 +25,7 @@ const useGetUserProfileByUsername = (username) => {
         });
 
         setUserProfile(userDoc);
+        console.log(userDoc);
 
         if (querySnapshot.empty) return setUserProfile(null);
       } catch (error) {
