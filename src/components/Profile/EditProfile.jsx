@@ -24,10 +24,12 @@ const EditProfile = ({ isOpen, onClose }) => {
     username: "",
     bio: "",
   });
+  const fileRef = useRef(null);
   const authUser = useAuthStore((state) => state.user);
   const handleEditProfile = () => {
     console.log(inputs);
   };
+  const { handleImageChange, selectedFile, setSelectedFile } = usePreviewImg();
 
   return (
     <>
@@ -61,8 +63,11 @@ const EditProfile = ({ isOpen, onClose }) => {
                       <Avatar size="xl" src={""} border={"2px solid white "} />
                     </Center>
                     <Center w="full">
-                      <Button w="full">Edit Profile Picture</Button>
+                      <Button w="full" onClick={() => fileRef.current.click()}>
+                        Edit Profile Picture
+                      </Button>
                     </Center>
+                    <Input type="file" hidden ref={fileRef} />
                   </Stack>
                 </FormControl>
 
