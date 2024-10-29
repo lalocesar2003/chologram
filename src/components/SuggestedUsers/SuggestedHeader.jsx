@@ -1,7 +1,7 @@
-import { Avatar, Flex, Button, Text, Link } from "@chakra-ui/react";
+import { Avatar, Flex, Button, Text } from "@chakra-ui/react";
 import useLogout from "../../hooks/useLogout";
 import useAuthStore from "../../store/authStore";
-
+import { Link } from "react-router-dom";
 const SuggestedHeader = () => {
   const { handleLogout, isLoggingOut } = useLogout();
   const authUser = useAuthStore((state) => state.user);
