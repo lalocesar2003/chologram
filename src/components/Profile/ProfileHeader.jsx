@@ -10,9 +10,13 @@ import {
 import useUserProfileStore from "../../store/userProfileStore";
 import useAuthStore from "../../store/authStore";
 import EditProfile from "./EditProfile";
+import useFollowUser from "../../hooks/useFollowUser";
 const ProfileHeader = () => {
   const { userProfile } = useUserProfileStore();
   const authUser = useAuthStore((state) => state.user);
+  const { isFollowing, isUpdating, handleFollowUser } = useFollowUser(
+    userProfile?.uid
+  );
   const visitingOwnProfileAndAuth =
     authUser && authUser.username === userProfile.username;
   const visitingAnotherProfileAndAuth =
@@ -68,7 +72,7 @@ const ProfileHeader = () => {
                 onClick={handleFollowUser}
                 isLoading={isUpdating}
               >
-                {isFollow}
+                {isFollowing ? "Unfollow" : "Follow"}
               </Button>
             </Flex>
           )}
