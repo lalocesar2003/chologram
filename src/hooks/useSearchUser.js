@@ -10,6 +10,7 @@ const useSearchUser = () => {
 
   const getUserProfile = async (username) => {
     setIsLoading(true);
+    setUser(null);
     try {
       setIsLoading(true);
       const q = query(
